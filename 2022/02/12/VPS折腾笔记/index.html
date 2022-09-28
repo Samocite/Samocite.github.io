@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>VPS折腾笔记 | samocite&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="年初买了个vps，打算折腾个xray服务器，买了三个月来练手 设置禁用root登录，然后改端口加密钥登录现在新版宝塔暂时没办法绕过绑定手机，我又懒得折腾旧版宝塔或者用其他面板啥的，所以干脆不用了2022-09-28更新：我认为这类管理页面并不安全，而且宝塔确实有漏洞隐患，考虑到服务器性能和安全性，不会再使用宝塔这类管理工具了nginx设置一个静态站，然后使用websocket代理xray端口 服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VPS折腾笔记">
+<meta property="og:url" content="http://samocite.github.io/2022/02/12/VPS%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="samocite&#39;s blog">
+<meta property="og:description" content="年初买了个vps，打算折腾个xray服务器，买了三个月来练手 设置禁用root登录，然后改端口加密钥登录现在新版宝塔暂时没办法绕过绑定手机，我又懒得折腾旧版宝塔或者用其他面板啥的，所以干脆不用了2022-09-28更新：我认为这类管理页面并不安全，而且宝塔确实有漏洞隐患，考虑到服务器性能和安全性，不会再使用宝塔这类管理工具了nginx设置一个静态站，然后使用websocket代理xray端口 服务">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-12T18:43:45.000Z">
+<meta property="article:modified_time" content="2022-09-28T04:10:19.528Z">
+<meta property="article:author" content="samocite">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="samocite's blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">samocite&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://samocite.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-VPS折腾笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/02/12/VPS%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-02-12T18:43:45.000Z" itemprop="datePublished">2022-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      VPS折腾笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>年初买了个vps，打算折腾个xray服务器，买了三个月来练手</p>
+<p>设置禁用root登录，然后改端口加密钥登录<br>现在新版宝塔暂时没办法绕过绑定手机，我又懒得折腾旧版宝塔或者用其他面板啥的，所以干脆不用了<br>2022-09-28更新：我认为这类管理页面并不安全，而且宝塔确实有漏洞隐患，考虑到服务器性能和安全性，不会再使用宝塔这类管理工具了<br>nginx设置一个静态站，然后使用websocket代理xray端口</p>
+<h2 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h2><p>更换源到清华源，更新所有软件，安装云服务系统，再安装bbr，最后将最新版nginx的源添加进去</p>
+<h2 id="服务器安全"><a href="#服务器安全" class="headerlink" title="服务器安全"></a>服务器安全</h2><p>我很喜欢debian这样简洁干净的系统，所以使用debian11<br>ssh设置密钥加密+密码登录+google二次认证，防火墙使用ufw，设置web端口和ssh仅允许自己的IP访问</p>
+<p>下载libpam-google-authenticator（debian11）<br>先在/etc/pam.d/sshd第一行写入auth required pam_google_authenticator.so<br>然后在sshd_config中写入AuthenticationMethods “publickey,keyboard-interactive”</p>
+<p>设置日志和web页面的RWX权限到刚刚好允许访问为止<br>网上总是有扫描器，占用服务器的资源，考虑要不要设计一个banip的逻辑。</p>
+<h2 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h2><p>最开始是用的acme.sh申请的证书，泛解析证书需要dns的api</p>
+<pre><code>export CF_Token=&quot;sdfsdfsdfljlbjkljlkjsdfoiwje&quot;
+export CF_Account_ID=&quot;xxxxxxxxxxxxx&quot;
+export CF_Zone_ID=&quot;xxxxxxxxxxxxx&quot;
+acme.sh --dns dns_cf --server letsencrypt --issue -d example.com -d *.example.com --keylength ec-256
+</code></pre>
+<p>如果不使用dns，直接申请即可，记得定时更新证书，并将证书安装给nginx和xray</p>
+<h2 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h2><p>设置强制https和HSTS，使用强加密，不使用RC4、MD5、DES，启动nginx，如果使用上方的证书申请方式，证书就不是sni.cloudflaressl.com的一年泛解析证书，如果不想使用dns，可以改为使用国内服务器转发的方式，nginx的stream中设置proxy_pass即可，有时间还要给转发服务器再配个证书</p>
+<h2 id="配置xray"><a href="#配置xray" class="headerlink" title="配置xray"></a>配置xray</h2><pre><code>wget https://github.com/XTLS/Xray-install/raw/main/install-release.sh
+sudo bash install-release.sh
+</code></pre>
+<p>配置xray dns为1.1.1.1，设置分流来屏蔽广告和拒绝访问国内网站，tls+ws入站，因为ws不支持xtls<br>之后配置Xray的日志文件，原本使用了随机用户启动服务，但是无法写入日志，所以新建了一个xray的用户，仅能使用xray和写日志<br>这次启动xray后可以正常使用了，看来没白折腾…</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://samocite.github.io/2022/02/12/VPS%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" data-id="cl8l65x2f0003awus9r7p4dvn" data-title="VPS折腾笔记" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/12/VPS%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/">VPS折腾笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 samocite<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
